@@ -1,6 +1,22 @@
 TI CC13xx/CC2538/CC26xx Serial Boot Loader [![Build Status](https://travis-ci.org/JelmerT/cc2538-bsl.svg?branch=master)](https://travis-ci.org/JelmerT/cc2538-bsl)
 ==========================================
 
+### Sonoff 동글 업데이트 시
+
+로컬에 연결 된 동글의 ID확인
+
+```shell
+# 적절히 동글 꽂기 전/후로 ID확인
+❯ ls -l /dev/tty.*
+crw-rw-rw-  1 root  wheel  0x9000004  4  6 13:01 /dev/tty.Bluetooth-Incoming-Port
+```
+
+확인한 ID로 펌웨어 파일 플래싱
+
+```shell
+❯ python cc2538-bsl.py -ewv -p {coordinator_id} --bootloader-sonoff-usb ./CC1352P2_CC2652P_launchpad_coordinator_20230507.hex
+```
+
 This folder contains a python script that communicates with the boot loader of the Texas Instruments CC2538, CC26xx and CC13xx SoCs (System on Chips).
 It can be used to erase, program, verify and read the flash of those SoCs with a simple USB to serial converter.
 
